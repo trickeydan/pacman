@@ -1,6 +1,6 @@
 from Creature import Creature
 from Maze import Maze
-import pygame
+import pygame, math
 
 class Pac(Creature):
     STATIONARY = 0
@@ -26,9 +26,10 @@ class Pac(Creature):
             self.rect.y += self.speed
         elif self.direction == Pac.LEFT:
             self.rect.x -= self.speed
+        super().update()
 
-        #Wrap around
-        if self.rect.x > Maze.width:
-            self.rect.x = -16
-        elif self.rect.x < -16:
-            self.rect.x = Maze.width -1
+        pos = self.getPos()
+        if self.direction == Pac.UP or self.direction == Pac.DOWN:
+            self.rect.x = Maze.grid_size * round(self.rect.x/Maze.grid_size,0)
+        elif self.direction == Pac.LEFT or self.direction == Pac.RIGHT:
+            self.rect.y = Maze.grid_size * round(self.rect.y/Maze.grid_size,0)

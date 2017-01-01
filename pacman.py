@@ -1,3 +1,4 @@
+#! /usr/bin/python3
 layout_file = "board.layout"
 grid_size = 16
 DEBUG = True
@@ -13,12 +14,12 @@ maze = Maze(layout_file,grid_size)
 maze.setup()
 pygame.display.set_caption("Pacman")
 
-clock = pygame.time.Clock()
-
 all_sprites_list = pygame.sprite.Group()
-
 pac = Pac(maze.getPacStart())
 all_sprites_list.add(pac)
+
+clock = pygame.time.Clock()
+
 
 while 1:
     for event in pygame.event.get():
@@ -33,6 +34,7 @@ while 1:
                 pac.direction = Pac.DOWN
             elif event.scancode == 113 or event.scancode == 38:
                 pac.direction = Pac.LEFT
+
     all_sprites_list.update()
 
     maze.drawLayout()
