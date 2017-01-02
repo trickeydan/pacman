@@ -47,13 +47,33 @@ class Pac(Creature):
 
     def keys(self,event):
         if event.scancode == 111 or event.scancode == 25: #UP
-            self.direction = Pac.UP
+            self.setDirectionWC(Pac.UP)
         elif event.scancode == 114 or event.scancode == 40: #RIGHT
-            self.direction = Pac.RIGHT
+            self.setDirectionWC(Pac.RIGHT)
         elif event.scancode == 116 or event.scancode == 39: #DOWN
-            self.direction = Pac.DOWN
+            self.setDirectionWC(Pac.DOWN)
         elif event.scancode == 113 or event.scancode == 38: #LEFT
-            self.direction = Pac.LEFT
+            self.setDirectionWC(Pac.LEFT)
+
+    def setDirectionWC(self,direction):
+        if direction != self.direction:
+            pos = self.getFrontPos()
+            if direction == Pac.UP: #UP
+                pos[1] -= 1
+                if pos in Maze.validTiles:
+                    self.direction = Pac.UP
+            elif direction == Pac.RIGHT: #RIGHT
+                pos[0] += 1
+                if pos in Maze.validTiles:
+                    self.direction = Pac.RIGHT
+            elif direction == Pac.DOWN: #DOWN
+                pos[1] += 1
+                if pos in Maze.validTiles:
+                    self.direction = Pac.DOWN
+            elif direction == Pac.LEFT: #LEFT
+                pos[0] -= 1
+                if pos in Maze.validTiles:
+                    self.direction = Pac.LEFT
 
     def getFrontPos(self):
         if self.direction == Pac.UP:
