@@ -22,4 +22,8 @@ class Creature(pygame.sprite.Sprite):
 
     def getPos(self):
         """Returns the current tile coord"""
-        return [math.floor(self.rect.x/Maze.grid_size) + int(Maze.grid_size/2),math.floor(self.rect.y/Maze.grid_size) + int(Maze.grid_size/2)]
+        #return [math.floor(self.rect.x/Maze.grid_size) + int(Maze.grid_size/2),math.floor(self.rect.y/Maze.grid_size) + int(Maze.grid_size/2)]
+        return self.toTile([self.rect.x + int(Maze.grid_size/2),self.rect.y + int(Maze.grid_size/2)])
+
+    def toTile(self,raw):
+        return [math.floor(raw[0]/Maze.grid_size),math.floor(raw[1]/Maze.grid_size)]

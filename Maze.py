@@ -21,13 +21,13 @@ class Maze(object):
         Maze.validTiles = []
         for y,row in enumerate(self.rows):
             for x,char in enumerate(row):
-                if char in ["",".","Q","P"]:
+                if char in ["E",".","P","o"]:
                     Maze.validTiles.append([x,y])
         return True
 
     def drawLayout(self):
         self.screen.fill((0,0,0))
-        if True:
+        if False:
             for x in range(0,self.x_count):
                 pygame.draw.line(self.screen,(255,255,255),(x*Maze.grid_size,0),(x*Maze.grid_size,Maze.height))
             for y in range(0,self.y_count):

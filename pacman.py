@@ -26,14 +26,7 @@ while 1:
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            if event.scancode == 111 or event.scancode == 25:
-                pac.direction = Pac.UP
-            elif event.scancode == 114 or event.scancode == 40:
-                pac.direction = Pac.RIGHT
-            elif event.scancode == 116 or event.scancode == 39:
-                pac.direction = Pac.DOWN
-            elif event.scancode == 113 or event.scancode == 38:
-                pac.direction = Pac.LEFT
+            pac.keys(event)
 
     all_sprites_list.update()
 
