@@ -26,7 +26,7 @@ class Maze(object):
                 if char in ["E",".","P","o"]:
                     Maze.validTiles.append([x,y])
                 if char == ".":
-                    food = Food(4,4,(255,0,0))
+                    food = Food(2)
                     food.rect.x = int((x+0.5) * Maze.grid_size) -2
                     food.rect.y = int((y+0.5) * Maze.grid_size) -2
                     Maze.food.add(food)

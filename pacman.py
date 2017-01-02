@@ -12,7 +12,6 @@ pygame.init()
 
 maze = Maze(layout_file,grid_size)
 maze.setup()
-pygame.display.set_caption("Pacman")
 
 all_sprites_list = pygame.sprite.Group()
 pac = Pac(maze.getPacStart())
@@ -23,7 +22,7 @@ clock = pygame.time.Clock()
 
 
 while 1:
-    pygame.display.set_caption("Pacman Score:" + str(score))
+    pygame.display.set_caption("Pacman Score: " + str(score))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()

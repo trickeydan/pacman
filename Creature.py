@@ -2,12 +2,15 @@ import pygame, math
 from Maze import Maze
 class Creature(pygame.sprite.Sprite):
     """Something that can move in the maze"""
-    def __init__(self,width,height,colour,speed = 1):
+    def __init__(self,width,height,speed = 1):
         super().__init__()
         self.image = pygame.Surface([width, height])
-        self.image.fill(colour)
+        self.drawSurface()
         self.rect = self.image.get_rect()
         self.speed = speed #Speed in pixels per frame
+
+    def drawSurface(self):
+        self.image.fill((255,255,255))
 
     def update(self):
         #Wrap around

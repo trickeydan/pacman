@@ -11,10 +11,13 @@ class Pac(Creature):
 
     def __init__(self,startpos):
         self.startpos = startpos
-        super().__init__(16,16,(255,255,0))
+        super().__init__(16,16)
         self.rect.x = startpos[0]
         self.rect.y = startpos[1]
         self.direction = Pac.STATIONARY
+
+    def drawSurface(self):
+        pygame.draw.circle(self.image,(255,255,0),[8,8],7)
 
     def update(self):
         oldpos = self.getFrontPos()
