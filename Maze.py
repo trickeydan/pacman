@@ -1,4 +1,5 @@
 import os, pygame
+from Food import Food
 class Maze(object):
     """The Maze class"""
     def __init__(self,layout_file,grid_size):
@@ -19,10 +20,16 @@ class Maze(object):
 
         #Define permitted positions
         Maze.validTiles = []
+        Maze.food = pygame.sprite.Group()
         for y,row in enumerate(self.rows):
             for x,char in enumerate(row):
                 if char in ["E",".","P","o"]:
                     Maze.validTiles.append([x,y])
+                if char == ".":
+                    food = Food(4,4,(255,0,0))
+                    food.rect.x = int((x+0.5) * Maze.grid_size) -2
+                    food.rect.y = int((y+0.5) * Maze.grid_size) -2
+                    Maze.food.add(food)
         return True
 
     def drawLayout(self):
@@ -37,8 +44,6 @@ class Maze(object):
 
                 if char == "%":
                     pygame.draw.rect(self.screen,(255,255,255),[x * Maze.grid_size,y*Maze.grid_size,Maze.grid_size,Maze.grid_size])
-                elif char == ".":
-                    pygame.draw.circle(self.screen,(255,0,0),[int((x+0.5) * Maze.grid_size),int((y+0.5) * Maze.grid_size)],2,0)
                 elif char == "o":
                     pygame.draw.circle(self.screen,(255,0,255),[int((x+0.5) * Maze.grid_size),int((y+0.5) * Maze.grid_size)],4,0)
                 elif char == "G":
