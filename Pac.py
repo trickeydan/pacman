@@ -33,7 +33,8 @@ class Pac(Creature):
 
         if oldpos != pos:
             #Pacman is trying to move into a new square!
-            if pos not in Maze.validTiles:
+            #print(Maze.exits)
+            if pos not in Maze.validTiles and oldpos not in Maze.exits and pos not in Maze.exits:
                 self.direction = -self.direction
                 self.move()
                 self.direction = 0

@@ -20,10 +20,11 @@ class Maze(object):
 
         #Define permitted positions
         Maze.validTiles = []
+        Maze.exits = []
         Maze.food = pygame.sprite.Group()
         for y,row in enumerate(self.rows):
             for x,char in enumerate(row):
-                if char in ["E",".","P","o"]:
+                if char in ["E",".","P","o","Q"]:
                     Maze.validTiles.append([x,y])
                 if char == ".":
                     food = Food(2,(255,0,0))
@@ -35,6 +36,8 @@ class Maze(object):
                     energizer.rect.x = int((x+0.5) * Maze.grid_size) -4
                     energizer.rect.y = int((y+0.5) * Maze.grid_size) -4
                     Maze.food.add(energizer)
+                elif char == "Q":
+                    Maze.exits.append([x,y])
         return True
 
     def drawLayout(self):

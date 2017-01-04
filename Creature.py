@@ -13,11 +13,10 @@ class Creature(pygame.sprite.Sprite):
         self.image.fill((255,255,255))
 
     def update(self):
-        #Wrap around
-        if self.rect.x > Maze.width:
-            self.rect.x = -16
-        elif self.rect.x < -16:
-            self.rect.x = Maze.width -1
+        if self.rect.x >= Maze.width:
+            self.rect.x = 6- Maze.grid_size
+        elif self.rect.x <= 0-Maze.grid_size:
+            self.rect.x = Maze.width -6
         elif self.rect.y > Maze.height:
             self.rect.y = -16
         elif self.rect.y < -16:
