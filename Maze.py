@@ -24,7 +24,7 @@ class Maze(object):
         Maze.food = pygame.sprite.Group()
         for y,row in enumerate(self.rows):
             for x,char in enumerate(row):
-                if char in ["E",".","P","o","Q"]:
+                if char in ["E",".","P","o","Q","G"]:
                     Maze.validTiles.append([x,y])
                 if char == ".":
                     food = Food(2,(255,0,0))
@@ -52,14 +52,20 @@ class Maze(object):
 
                 if char == "%":
                     pygame.draw.rect(self.screen,(255,255,255),[x * Maze.grid_size,y*Maze.grid_size,Maze.grid_size,Maze.grid_size])
-                elif char == "G":
-                    pygame.draw.rect(self.screen,(0,102,255),[x * Maze.grid_size,y*Maze.grid_size,Maze.grid_size,Maze.grid_size])
 
     def getPacStart(self):
         for y,row in enumerate(self.rows):
             for x,char in enumerate(row):
                 if char == "P":
                     return [x * Maze.grid_size,y*Maze.grid_size]
+
+    def getGhostStart(self):
+        positions = []
+        for y,row in enumerate(self.rows):
+            for x,char in enumerate(row):
+                if char == "G":
+                    positions.append([x * Maze.grid_size,y*Maze.grid_size])
+        return positions
 
     def drawSprites(self,list):
         list.draw(self.screen)

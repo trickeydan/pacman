@@ -6,6 +6,7 @@ class Creature(pygame.sprite.Sprite):
         super().__init__()
         self.image = pygame.Surface([width, height])
         self.drawSurface()
+        self.image.set_colorkey((0,0,0))
         self.rect = self.image.get_rect()
         self.speed = speed #Speed in pixels per frame
 

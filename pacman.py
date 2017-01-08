@@ -8,6 +8,7 @@ import sys, pygame, os, time
 from Creature import Creature
 from Maze import Maze
 from Pac import Pac
+from Ghost import Ghost
 pygame.init()
 
 maze = Maze(layout_file,grid_size)
@@ -16,6 +17,11 @@ maze.setup()
 all_sprites_list = pygame.sprite.Group()
 pac = Pac(maze.getPacStart())
 all_sprites_list.add(pac)
+
+for pos in maze.getGhostStart():
+    ghost = Ghost(pos)
+    all_sprites_list.add(ghost)
+
 
 score = 0
 clock = pygame.time.Clock()
