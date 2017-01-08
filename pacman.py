@@ -15,20 +15,21 @@ maze = Maze(layout_file,grid_size)
 maze.setup()
 
 all_sprites_list = pygame.sprite.Group()
+ghost_list = pygame.sprite.Group()
 pac = Pac(maze.getPacStart())
 all_sprites_list.add(pac)
 
 for pos in maze.getGhostStart():
-    ghost = Ghost(pos)
+    ghost = Ghost(pos,len(ghost_list))
+    ghost_list.add(ghost)
     all_sprites_list.add(ghost)
 
 
-score = 0
 clock = pygame.time.Clock()
 
 
 while 1:
-    pygame.display.set_caption("Pacman Score: " + str(score))
+    pygame.display.set_caption("Pacman Score: " + str(Maze.SCORE))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
@@ -39,7 +40,7 @@ while 1:
     Maze.food.update()
 
     food_eaten = pygame.sprite.spritecollide(pac,Maze.food, True)
-    score += len(food_eaten)
+    Maze.SCORE += len(food_eaten)
 
     maze.drawLayout()
     maze.drawSprites(Maze.food)

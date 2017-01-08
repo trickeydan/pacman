@@ -2,6 +2,9 @@ import os, pygame
 from Food import Food
 class Maze(object):
     """The Maze class"""
+
+    SCORE = 0
+
     def __init__(self,layout_file,grid_size):
         self.layout_file = layout_file
         Maze.grid_size = grid_size

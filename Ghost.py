@@ -9,11 +9,19 @@ class Ghost(Creature):
     DOWN = -1
     LEFT = -2
 
-    def __init__(self,startpos):
+    def __init__(self,startpos,number):
         self.startpos = startpos
         super().__init__(16,16)
         self.rect.x = startpos[0]
         self.rect.y = startpos[1]
+        self.number = number
+        self.active = False
 
     def drawSurface(self):
         self.image.fill((0,102,255))
+    def update(self):
+        super().update()
+
+        if not self.active and Maze.SCORE >= (self.number * 50):
+            self.active = True
+            print("Ghost Activated")
