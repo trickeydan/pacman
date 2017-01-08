@@ -9,11 +9,14 @@ class Pac(Creature):
     DOWN = -1
     LEFT = -2
 
+    currentPos = [0,0]
+
     def __init__(self,startpos):
         self.startpos = startpos
         super().__init__(16,16)
         self.rect.x = startpos[0]
         self.rect.y = startpos[1]
+        Pac.currentPos = startpos
         self.direction = Pac.STATIONARY
 
     def drawSurface(self):
@@ -38,6 +41,7 @@ class Pac(Creature):
                 self.direction = -self.direction
                 self.move()
                 self.direction = 0
+        Pac.currentPos = self.getPos()
 
     def move(self):
         if self.direction == Pac.UP:

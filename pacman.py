@@ -42,6 +42,11 @@ while 1:
     food_eaten = pygame.sprite.spritecollide(pac,Maze.food, True)
     Maze.SCORE += len(food_eaten)
 
+    ghost_hits = pygame.sprite.spritecollide(pac,ghost_list, False)
+    if not len(ghost_hits) == 0:
+        print("Game Over!")
+        sys.exit()
+
     maze.drawLayout()
     maze.drawSprites(Maze.food)
     maze.drawSprites(all_sprites_list)

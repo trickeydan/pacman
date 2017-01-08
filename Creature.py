@@ -6,7 +6,7 @@ class Creature(pygame.sprite.Sprite):
         super().__init__()
         self.image = pygame.Surface([width, height])
         self.drawSurface()
-        self.image.set_colorkey((0,0,0))
+        self.image.set_colorkey((0,0,0)) # Make transparent
         self.rect = self.image.get_rect()
         self.speed = speed #Speed in pixels per frame
 
@@ -24,7 +24,7 @@ class Creature(pygame.sprite.Sprite):
             self.rect.y = Maze.height -1
 
     def getPos(self):
-        """Returns the current tile coord"""
+        """Returns the current tile coord based on the centre"""
         #return [math.floor(self.rect.x/Maze.grid_size) + int(Maze.grid_size/2),math.floor(self.rect.y/Maze.grid_size) + int(Maze.grid_size/2)]
         return self.toTile([self.rect.x + int(Maze.grid_size/2),self.rect.y + int(Maze.grid_size/2)])
 
