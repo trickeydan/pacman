@@ -57,23 +57,26 @@ class Ghost(Creature):
         down = [current[0],current[1] + 1]
         right = [current[0] + 1,current[1]]
         available = []
-        if up in Maze.validTiles:
+        if up in Maze.validTiles and self.direction != Creature.DOWN:
             available.append([up,Creature.UP])
-        if left in Maze.validTiles:
+        if left in Maze.validTiles and self.direction != Creature.RIGHT:
             available.append([left,Creature.LEFT])
-        if down in Maze.validTiles:
+        if down in Maze.validTiles and self.direction != Creature.UP:
             available.append([down,Creature.DOWN])
-        if right in Maze.validTiles:
+        if right in Maze.validTiles and self.direction != Creature.LEFT:
             available.append([right,Creature.RIGHT])
+
+        if len(available) == 0:
+            print("No available tiles!")
 
         lowest = 1000
         diret = Creature.STATIONARY
         self.nextSquare = self.getCornerPos()
+
         for direction in available:
             dist = ((self.target[0] - direction[0][0])** 2 + (self.target[1] - direction[0][1])** 2)** 0.5
             if dist < lowest:
                 lowest = dist
                 closest = direction
-                
-        self.nextSquare = closest[0]
-        self.direction = closest[1]
+                self.nextSquare = closest[0]
+                self.direction = closest[1]
