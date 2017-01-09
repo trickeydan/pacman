@@ -29,11 +29,6 @@ class Pac(Creature):
 
         pos = self.getFrontPos() #Top left tile coord
 
-        if self.direction == Pac.UP or self.direction == Pac.DOWN:
-            self.rect.x = Maze.grid_size * round(self.rect.x/Maze.grid_size,0)
-        elif self.direction == Pac.LEFT or self.direction == Pac.RIGHT:
-            self.rect.y = Maze.grid_size * round(self.rect.y/Maze.grid_size,0)
-
         if oldpos != pos:
             #Pacman is trying to move into a new square!
             #print(Maze.exits)
@@ -42,16 +37,6 @@ class Pac(Creature):
                 self.move()
                 self.direction = 0
         Pac.currentPos = self.getPos()
-
-    def move(self):
-        if self.direction == Pac.UP:
-            self.rect.y -= self.speed
-        elif self.direction == Pac.RIGHT:
-            self.rect.x += self.speed
-        elif self.direction == Pac.DOWN:
-            self.rect.y += self.speed
-        elif self.direction == Pac.LEFT:
-            self.rect.x -= self.speed
 
     def keys(self,event):
         if event.scancode == 111 or event.scancode == 25: #UP
@@ -82,14 +67,3 @@ class Pac(Creature):
                 pos[0] -= 1
                 if pos in Maze.validTiles:
                     self.direction = Pac.LEFT
-
-    def getFrontPos(self):
-        if self.direction == Pac.UP:
-            return self.toTile([self.rect.x + int(Maze.grid_size/2),self.rect.y])
-        elif self.direction == Pac.RIGHT:
-            return self.toTile([self.rect.x + Maze.grid_size -1,self.rect.y + int(Maze.grid_size/2)])
-        elif self.direction == Pac.DOWN:
-            return self.toTile([self.rect.x + int(Maze.grid_size/2),self.rect.y + Maze.grid_size -1])
-        elif self.direction == Pac.LEFT:
-            return self.toTile([self.rect.x,self.rect.y + int(Maze.grid_size/2)])
-        return self.getPos()

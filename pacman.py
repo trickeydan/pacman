@@ -45,6 +45,7 @@ while 1:
     ghost_hits = pygame.sprite.spritecollide(pac,ghost_list, False)
     if not len(ghost_hits) == 0:
         print("Game Over!")
+        print("Final Score: " + str(Maze.SCORE))
         sys.exit()
 
     maze.drawLayout()
